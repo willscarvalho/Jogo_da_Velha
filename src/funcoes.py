@@ -15,7 +15,7 @@ def definir_ganhador(ganhador, jogador1, jogador2):
     ganhador: Variável do loop que identifica se o ganhador e X ou Y antes das 9 jogadas.
     jogador1: variável jo primeiro jogador
     jogador2: variavel do segundo jogador:
-    Obs: Exibi a menssagem de acordo com o ganhador ou empate.
+    Obs: exibi a menssagem de acordo com o ganhador ou empate.
     """
     print('{}'.format(ganhador))
     if ganhador == jogador1:
@@ -27,11 +27,22 @@ def definir_ganhador(ganhador, jogador1, jogador2):
             print('Deu VELHA!')
 # ------------------------------------------------------------------------------------
 def definir_posicao_jogada():
+    """
+    Função para definir as entradas da linha e coluna no tabuleiro.
+    return: retornará os inteiros da linah e coluna para as variáveis que
+    chamam a função.
+    """
     linha = int(input('Linha: '))
     coluna = int(input('Coluna: '))
     return linha, coluna
 # ------------------------------------------------------------------------------------
 def efetuar_jogada(jogador, tabuleiro):
+    """
+    Função para efetuar a jogada no tabuleiro.
+    jogador = jogador atual da rodada.
+    tabuleiro = tabuleiro do jogo a cada jogada.
+    return: tabuleiro atualizado com a jogada na posição.
+    """
     linha = coluna = validar = 0
     while True:
         linha, coluna = definir_posicao_jogada()
@@ -44,6 +55,11 @@ def efetuar_jogada(jogador, tabuleiro):
     return tabuleiro
 # ------------------------------------------------------------------------------------
 def escolher_jogador():
+    """
+    Função para escolher qual variável cada jogador irá jogar.
+    return: as variáveis dos jogadores respectivamente para a
+    variáveis que chamam essa função.
+    """
     while True:
         jog1 = ' '
         jog2 = ' '
@@ -64,11 +80,23 @@ def escolher_jogador():
     return jog1, jog2
 # ------------------------------------------------------------------------------------
 def inicio():
+    """
+    Função para exibir na tela o início do jogo.
+    """
     print('{}{}{}'.format('.','-'*40, '.'))
     print('{:<15}JOGO DA VELHA{:>14}'.format('|', '|'))
     print('{}{}{}'.format("'", '-'*40, "'"))
 # ------------------------------------------------------------------------------------
 def jogo_loop(tabuleiro, jogador1, jogador2, ganhador):
+    """
+    Função que fará o loop das 9 jogadas possíveis no tabuleiro.
+    tabuleiro = tabuleiro do jogo.
+    jogador1 = primeiro jogador coma variável definida.
+    jogador2 = segundo jgoador com a variável definida.
+    ganhador = ganhado em branco, para receber a função de verificação do
+    ganhador.
+    Obs: Essa função chamam as demais funções do jogo.
+    """
     for i in range(1,10):
         print('{}{}{}'.format('.','-'*40, '.'))
         print('{}{:>17}° Jogada{:>16}'.format('|', i, '|'))
@@ -87,10 +115,20 @@ def jogo_loop(tabuleiro, jogador1, jogador2, ganhador):
 
 # ------------------------------------------------------------------------------------
 def log_jogada(jogador, linha, coluna):
+    """
+    Função para exibir as jogadas de cada jogador.
+    jogador = jogador respectivamente da jogada atual.
+    linha = linha escolhida do tabuleiro.
+    coluna = escolhida do tabuleiro.
+    """
     print('O jogador {} realizou a jogada.'.format(jogador))
     print('Na linha {} e Coluna {}.'.format(linha, coluna))
 # ------------------------------------------------------------------------------------
 def mostrar_tabuleiro(tab):
+    """
+    Função para exibir o tabuleiro atualizado.
+    tab = tabuleiro atual no momento que chamar a função.
+    """
     print('\n')
     print('\t  {}  |  {}  |  {} '.format(tab[0][0], tab[0][1], tab[0][2]))
     print('\t-----|-----|-----')
@@ -100,6 +138,10 @@ def mostrar_tabuleiro(tab):
     print('\n')
 # ------------------------------------------------------------------------------------
 def mostrar_tabuleiro_inicial():
+    """
+    Função para exibir o tabuleiro inicial com as
+    numerações de linha e coluna respectivamente de cada posição.
+    """
     print('\n')
     print('\t  {}  |  {}  |  {} '.format('00', '01', '02'))
     print('\t------|------|------')
@@ -111,6 +153,13 @@ def mostrar_tabuleiro_inicial():
 
 # ------------------------------------------------------------------------------------
 def verificar_jogada(linha, coluna, tabuleiro):
+    """
+    Função para verificar se a jogada é possível.
+    linha = linha da jogada.
+    coluna = coluna da jogada.
+    tabuleiro = do jogo.
+    return a permissão da jogada, 0 não permitida e 1 para permitida.
+    """
     permissao = 0
     if tabuleiro[linha][coluna] in 'xX' or tabuleiro[linha][coluna] in 'oO':
         print('Jogada não permitida.')
@@ -119,6 +168,12 @@ def verificar_jogada(linha, coluna, tabuleiro):
     return permissao
 # ------------------------------------------------------------------------------------
 def verificar_ganhador(t, jogador):
+    """
+    Função para verificar o ganhador.
+    t = tabuleiro do jogo.
+    jogador = jogado da rodada.
+    return o ganhador, caso há.
+    """
     ganhador = ''
     # Verificando Colunas:
     if (t[0][0] == jogador and t[1][0] == jogador and t[2][0] == jogador) or (t[0][1] == jogador and t[1][1] == jogador and t[2][1] == jogador) or (t[0][2] == jogador and t[1][2] == jogador and t[2][2] == jogador):
